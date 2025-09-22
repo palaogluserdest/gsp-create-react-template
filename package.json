@@ -1,0 +1,61 @@
+{
+  "name": "create-gsp-react",
+  "version": "1.0.0",
+  "description": "Create modern React applications with GSP React Template - Choose from JavaScript/TypeScript with optional Tailwind CSS and ShadcnUI",
+  "main": "index.js",
+  "bin": {
+    "create-gsp-react": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "templates/**/*",
+    "README.md",
+    "package.json"
+  ],
+  "scripts": {
+    "test": "node index.js test-app --template javascript",
+    "prepublishOnly": "echo 'Ready to publish create-gsp to NPM!'"
+  },
+  "keywords": [
+    "react",
+    "template",
+    "vite",
+    "typescript",
+    "tailwind",
+    "shadcn",
+    "shadcn-ui",
+    "formik",
+    "yup",
+    "cli",
+    "create-app",
+    "create-react-app",
+    "boilerplate",
+    "starter",
+    "scaffold"
+  ],
+  "author": {
+    "name": "GSP Team",
+    "email": "contact@gsp.dev",
+    "url": "https://github.com/palaogluserdest"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.6",
+    "fs-extra": "^11.1.1",
+    "commander": "^9.5.0",
+    "ora": "^5.4.1"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=7.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/palaogluserdest/gsp-react-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/palaogluserdest/gsp-react-template/issues"
+  },
+  "homepage": "https://github.com/palaogluserdest/gsp-react-template#readme"
+}

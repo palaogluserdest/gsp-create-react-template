@@ -1,0 +1,72 @@
+// Colors
+// You can write your color variables here
+$color-primary: #007bff;
+$color-secondary: #6c757d;
+$color-success: #28a745;
+$color-danger: #dc3545;
+$color-warning: #ffc107;
+$color-info: #17a2b8;
+$color-light: #f8f9fa;
+$color-dark: #343a40;
+$color-white: #ffffff;
+$color-black: #000000;
+
+
+
+// Typography
+$font-size-12xl: 3.25rem;
+/* 52px */
+$font-size-11xl: 3rem;
+/* 48px */
+$font-size-10xl: 2.625rem;
+/* 42px */
+$font-size-9xl: 2.5rem;
+/* 40px */
+$font-size-8xl: 2.25rem;
+/* 36px */
+$font-size-7xl: 2rem;
+/* 32px */
+$font-size-6xl: 1.875rem;
+/* 30px */
+$font-size-5xl: 1.75rem;
+/* 28px */
+$font-size-4xl: 1.625rem;
+/* 26px */
+$font-size-3xl: 1.5625rem;
+/* 25px */
+$font-size-2xl: 1.5rem;
+/* 24px */
+$font-size-xl: 1.25rem;
+/* 20px */
+$font-size-l: 1.125rem;
+/* 18px */
+$font-size-md: 1rem;
+/* 16px */
+$font-size-s: 0.9375rem;
+/* 15px */
+$font-size-xs: 0.875rem;
+/* 14px */
+$font-size-2xs: 0.8125rem;
+/* 13px */
+$font-size-3xs: 0.75rem;
+/* 12px */
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// Fonts
+// You can write your font family variables here
+
+
+// Breakpoints
+$desktop-xl: 1920px;
+$desktop-l: 1440px;
+$desktop-m: 1200px;
+$desktop-s: 1024px;
+$tablet-l: 992px;
+$tablet-m: 768px;
+$tablet-s: 640px;
+$mobile-l: 576px;
+$mobile-m: 480px;
+$mobile-s: 320px;
