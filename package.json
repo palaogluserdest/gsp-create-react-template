@@ -1,6 +1,6 @@
 {
   "name": "create-gsp-react",
-  "version": "1.0.2",
+  "version": "1.0.8",
   "description": "Create modern React applications with GSP React Template - Choose from JavaScript/TypeScript with optional Tailwind CSS and ShadcnUI",
   "main": "index.js",
   "bin": {

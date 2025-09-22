@@ -62,10 +62,14 @@ program
           {
             type: "input",
             name: "name",
-            message: "What is your project name?",
+            message:
+              "What is your project name? (use '.' for current directory)",
             validate: (input) => {
               if (!input.trim()) {
                 return "Project name is required";
+              }
+              if (input.trim() === ".") {
+                return true; // Allow dot for current directory
               }
               if (!/^[a-zA-Z0-9-_]+$/.test(input)) {
                 return "Project name can only contain letters, numbers, hyphens, and underscores";
@@ -75,6 +79,12 @@ program
           },
         ]);
         projectName = name;
+      }
+
+      // Handle dot notation for current directory
+      if (projectName === ".") {
+        projectName = path.basename(process.cwd());
+        console.log(chalk.cyan(`Using current directory name: ${projectName}`));
       }
 
       // Get template choice
@@ -113,10 +123,33 @@ program
   });
 
 async function createProject(projectName, templateChoice) {
-  const targetDir = path.resolve(process.cwd(), projectName);
+  let targetDir;
+  let isCurrentDir = false;
 
-  // Check if directory exists
-  if (await fs.pathExists(targetDir)) {
+  // Check if user wants to use current directory
+  const currentDirName = path.basename(process.cwd());
+  if (projectName === currentDirName) {
+    const { useCurrentDir } = await inquirer.prompt([
+      {
+        type: "confirm",
+        name: "useCurrentDir",
+        message: `Create project in current directory (${process.cwd()})?`,
+        default: true,
+      },
+    ]);
+
+    if (useCurrentDir) {
+      targetDir = process.cwd();
+      isCurrentDir = true;
+    } else {
+      targetDir = path.resolve(process.cwd(), projectName);
+    }
+  } else {
+    targetDir = path.resolve(process.cwd(), projectName);
+  }
+
+  // Check if directory exists and is not empty (for non-current directory)
+  if (!isCurrentDir && (await fs.pathExists(targetDir))) {
     const { overwrite } = await inquirer.prompt([
       {
         type: "confirm",
@@ -134,13 +167,37 @@ async function createProject(projectName, templateChoice) {
     await fs.remove(targetDir);
   }
 
+  // For current directory, check if it's empty or ask for confirmation
+  if (isCurrentDir) {
+    const files = await fs.readdir(targetDir);
+    const nonHiddenFiles = files.filter((file) => !file.startsWith("."));
+
+    if (nonHiddenFiles.length > 0) {
+      const { proceed } = await inquirer.prompt([
+        {
+          type: "confirm",
+          name: "proceed",
+          message: `Current directory is not empty. Continue anyway?`,
+          default: false,
+        },
+      ]);
+
+      if (!proceed) {
+        console.log(chalk.yellow("Operation cancelled."));
+        process.exit(0);
+      }
+    }
+  }
+
   const spinner = ora(
     `Creating ${projectName} with ${TEMPLATES[templateChoice].name} template...`
   ).start();
 
   try {
-    // Create target directory
-    await fs.ensureDir(targetDir);
+    // Create target directory (if not current dir)
+    if (!isCurrentDir) {
+      await fs.ensureDir(targetDir);
+    }
 
     // Copy template files
     const templateDir = path.join(__dirname, "templates", templateChoice);
@@ -155,7 +212,9 @@ async function createProject(projectName, templateChoice) {
 
     // Show next steps
     console.log(chalk.blue("\n📋 Next steps:"));
-    console.log(chalk.gray(`  cd ${projectName}`));
+    if (!isCurrentDir) {
+      console.log(chalk.gray(`  cd ${projectName}`));
+    }
     console.log(chalk.gray("  npm install"));
     console.log(chalk.gray("  npm run dev"));
     console.log(chalk.blue("\n🎉 Happy coding!\n"));
@@ -199,7 +258,7 @@ async function updatePackageJson(targetDir, projectName, templateChoice) {
       "@radix-ui/react-slot": "^1.0.2",
       "class-variance-authority": "^0.7.0",
       clsx: "^2.0.0",
-      "lucide-react": "^0.288.0",
+      "lucide-react": "^0.544.0",
       "tailwind-merge": "^1.14.0",
     };
   }

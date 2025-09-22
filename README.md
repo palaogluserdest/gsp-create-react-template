@@ -5,14 +5,15 @@ A powerful CLI tool to quickly scaffold modern React applications with various t
 ## 🚀 Quick Start
 
 ```bash
-# Using npm
-npm create gsp-react@latest my-app
+# Using npx (recommended)
+npx create-gsp-react my-app
 
-# Using yarn
-yarn create gsp-react my-app
+# Install to current directory
+npx create-gsp-react .
 
-# Using pnpm
-pnpm create gsp-react my-app
+# Or install globally
+npm install -g create-gsp-react
+create-gsp-react my-app
 ```
 
 ## 📦 Template Options
