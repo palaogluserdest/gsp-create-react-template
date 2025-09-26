@@ -1,6 +1,6 @@
 # Create GSP React Template
 
-A powerful CLI tool to quickly scaffold modern React applications with various template options including TypeScript, Tailwind CSS, and ShadcnUI.
+A powerful CLI tool to quickly scaffold modern React applications with an intelligent multi-step template selection system. Choose your language, routing & forms, and styling approach through an interactive menu.
 
 ## 🚀 Quick Start
 
@@ -18,30 +18,48 @@ create-gsp-react my-app
 
 ## 📦 Template Options
 
-Choose from 6 different template configurations:
+Interactive multi-step template selection with modern combinations:
 
-### 🟡 JavaScript Templates
+### 🌐 Step 1: Choose Language
 
-- **JavaScript** - Pure React with JavaScript, Vite, Formik & Yup
-- **JavaScript + Tailwind** - JavaScript template with Tailwind CSS
-- **JavaScript + ShadcnUI** - JavaScript template with ShadcnUI components
+- **JavaScript** - Modern JavaScript with React 19 and Vite
+- **TypeScript** - TypeScript with full type safety and better DX
 
-### 🔵 TypeScript Templates
+### 🧭 Step 2: Choose Router + Forms
 
-- **TypeScript** - React with TypeScript, Vite, Formik & Yup
-- **TypeScript + Tailwind** - TypeScript template with Tailwind CSS
-- **TypeScript + ShadcnUI** - TypeScript template with ShadcnUI components
+- **React Router + Formik + Yup** - Traditional form handling with React Router v7
+- **React Router + React Hook Form + Zod** - Modern form handling _(Coming in v1.2.0)_
+
+### 🎨 Step 3: Choose Styling
+
+- **Vanilla CSS** - Standard CSS with Sass preprocessing
+- **Tailwind CSS** - Utility-first CSS framework
+- **Tailwind CSS + ShadcnUI** - Modern UI components built on Tailwind CSS
+
+### 🔗 Available Combinations
+
+Currently available: **6 templates** (3 styling options × 2 languages)  
+Coming soon: **12 templates** (6 current + 6 React Hook Form variants)
 
 ## 🛠️ What's Included
 
-### Core Features
+### Core Features (All Templates)
 
 - ⚛️ **React 19** - Latest React with concurrent features
 - ⚡ **Vite** - Lightning fast development and build tool
-- 🧭 **React Router 7** - Modern declarative routing
-- 📝 **Formik + Yup** - Robust form handling and validation
+- 🧭 **React Router 7** - Modern declarative routing with data API
 - 🎨 **Sass** - CSS preprocessing with organized architecture
 - 🔍 **ESLint** - Code quality and consistency
+- 📱 **Responsive Design** - Mobile-first approach
+- 🏗️ **Component Architecture** - Well-organized folder structure
+
+### Form Handling Options
+
+**Current (v1.1.0):**
+- 📝 **Formik + Yup** - Traditional, battle-tested form handling with schema validation
+
+**Coming (v1.2.0):**
+- 🎯 **React Hook Form + Zod** - Modern, performant forms with TypeScript-first validation
 
 ### TypeScript Templates Include
 
@@ -85,34 +103,46 @@ my-app/
 
 ## 🎯 Usage Examples
 
-### Interactive Mode
+### Interactive Mode (Recommended)
 
 ```bash
-npm create gsp@latest
-# Follow the prompts to name your project and choose template
+npx create-gsp-react my-app
+# Follow the 3-step selection process:
+# 1. 🌐 Choose Language: JavaScript or TypeScript
+# 2. 🧭 Choose Router + Forms: Formik+Yup or React Hook Form+Zod
+# 3. 🎨 Choose Styling: Vanilla CSS, Tailwind CSS, or ShadcnUI
 ```
 
 ### Direct Template Selection
 
 ```bash
-# JavaScript with Tailwind
-npm create gsp@latest my-app --template javascript-tailwind
+# JavaScript with Tailwind CSS
+npx create-gsp-react my-app --template javascript-tailwind
 
 # TypeScript with ShadcnUI
-npm create gsp@latest my-app --template typescript-shadcn
+npx create-gsp-react my-app --template typescript-shadcn
 
-# Pure TypeScript
-npm create gsp@latest my-app --template typescript
+# Pure TypeScript with Vanilla CSS
+npx create-gsp-react my-app --template typescript
 ```
 
-### Available Template IDs
+### Current Template IDs
 
-- `javascript`
-- `typescript`
-- `javascript-tailwind`
-- `typescript-tailwind`
-- `javascript-shadcn`
-- `typescript-shadcn`
+**Available Now (v1.1.0):**
+- `javascript` - JS + React Router + Formik+Yup + Vanilla CSS
+- `typescript` - TS + React Router + Formik+Yup + Vanilla CSS  
+- `javascript-tailwind` - JS + React Router + Formik+Yup + Tailwind CSS
+- `typescript-tailwind` - TS + React Router + Formik+Yup + Tailwind CSS
+- `javascript-shadcn` - JS + React Router + Formik+Yup + ShadcnUI
+- `typescript-shadcn` - TS + React Router + Formik+Yup + ShadcnUI
+
+**Coming in v1.2.0:**
+- `javascript-rhf` - JS + React Router + React Hook Form+Zod + Vanilla CSS
+- `typescript-rhf` - TS + React Router + React Hook Form+Zod + Vanilla CSS
+- `javascript-rhf-tailwind` - JS + React Router + React Hook Form+Zod + Tailwind CSS
+- `typescript-rhf-tailwind` - TS + React Router + React Hook Form+Zod + Tailwind CSS
+- `javascript-rhf-shadcn` - JS + React Router + React Hook Form+Zod + ShadcnUI
+- `typescript-rhf-shadcn` - TS + React Router + React Hook Form+Zod + ShadcnUI
 
 ## 🚀 After Project Creation
 
@@ -123,6 +153,14 @@ npm run dev
 ```
 
 Your app will be running at `http://localhost:5173`
+
+### 🌍 What You Get
+
+- **Main Layout** - Available at `/` with navigation
+- **Admin Layout** - Available at `/admin` with admin panel
+- **Responsive Design** - Works on all devices
+- **Development Server** - Hot reload and fast refresh
+- **Production Ready** - Optimized build with Vite
 
 ## 📜 Available Scripts
 

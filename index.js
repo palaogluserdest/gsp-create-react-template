@@ -9,7 +9,52 @@ const ora = require("ora");
 
 const packageJson = require("./package.json");
 
-// Template variants
+// Language options
+const LANGUAGES = {
+  javascript: {
+    name: "JavaScript",
+    description: "Modern JavaScript with React 19 and Vite",
+  },
+  typescript: {
+    name: "TypeScript",
+    description: "TypeScript with full type safety and better DX",
+  },
+};
+
+// Router + Form library combinations
+const ROUTER_FORM_OPTIONS = {
+  "router-formik": {
+    name: "React Router + Formik + Yup",
+    description: "React Router v7 with traditional Formik forms and Yup validation",
+    templatePrefix: "", // Uses current templates
+  },
+  "router-rhf": {
+    name: "React Router + React Hook Form + Zod",
+    description: "React Router v7 with modern React Hook Form and Zod validation",
+    templatePrefix: "-rhf", // New templates to be created
+  },
+};
+
+// Styling options
+const STYLING_OPTIONS = {
+  vanilla: {
+    name: "Vanilla CSS",
+    description: "Standard CSS with Sass preprocessing",
+    templateSuffix: "",
+  },
+  tailwind: {
+    name: "Tailwind CSS",
+    description: "Utility-first CSS framework",
+    templateSuffix: "-tailwind",
+  },
+  shadcn: {
+    name: "Tailwind CSS + ShadcnUI",
+    description: "Modern UI components built on Tailwind CSS",
+    templateSuffix: "-shadcn",
+  },
+};
+
+// Legacy template mapping for backward compatibility
 const TEMPLATES = {
   javascript: {
     name: "JavaScript",
@@ -87,21 +132,67 @@ program
         console.log(chalk.cyan(`Using current directory name: ${projectName}`));
       }
 
-      // Get template choice
+      // Get template choice through nested selection
       let templateChoice = options.template;
       if (!templateChoice) {
-        const { template } = await inquirer.prompt([
+        // Step 1: Choose language
+        const { language } = await inquirer.prompt([
           {
             type: "list",
-            name: "template",
-            message: "Which template would you like to use?",
-            choices: Object.entries(TEMPLATES).map(([key, value]) => ({
+            name: "language",
+            message: "🌐 Choose your language:",
+            choices: Object.entries(LANGUAGES).map(([key, value]) => ({
               name: `${value.name} - ${value.description}`,
               value: key,
             })),
           },
         ]);
-        templateChoice = template;
+
+        // Step 2: Choose router and form combination
+        const { routerForm } = await inquirer.prompt([
+          {
+            type: "list",
+            name: "routerForm",
+            message: "🧭 Choose your routing and form handling:",
+            choices: Object.entries(ROUTER_FORM_OPTIONS).map(([key, value]) => ({
+              name: `${value.name} - ${value.description}`,
+              value: key,
+            })),
+          },
+        ]);
+
+        // Step 3: Choose styling approach
+        const { styling } = await inquirer.prompt([
+          {
+            type: "list",
+            name: "styling",
+            message: "🎨 Choose your styling approach:",
+            choices: Object.entries(STYLING_OPTIONS).map(([key, value]) => ({
+              name: `${value.name} - ${value.description}`,
+              value: key,
+            })),
+          },
+        ]);
+
+        // Construct template choice based on selections
+        const routerFormConfig = ROUTER_FORM_OPTIONS[routerForm];
+        const stylingConfig = STYLING_OPTIONS[styling];
+        
+        templateChoice = language + routerFormConfig.templatePrefix + stylingConfig.templateSuffix;
+        
+        console.log(chalk.cyan(`\n✨ Selected configuration:`));
+        console.log(chalk.white(`   Language: ${LANGUAGES[language].name}`));
+        console.log(chalk.white(`   Router + Forms: ${routerFormConfig.name}`));
+        console.log(chalk.white(`   Styling: ${stylingConfig.name}`));
+        console.log(chalk.white(`   Template: ${templateChoice}\n`));
+
+        // Check if React Hook Form templates exist
+        if (routerForm === "router-rhf") {
+          console.log(chalk.yellow("ℹ️  React Hook Form + Zod templates coming in v1.2.0!"));
+          console.log(chalk.yellow("   Using React Router + Formik + Yup for now...\n"));
+          // Fallback to Formik templates for now
+          templateChoice = language + stylingConfig.templateSuffix;
+        }
       }
 
       // Validate template choice
