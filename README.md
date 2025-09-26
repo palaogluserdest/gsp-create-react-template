@@ -1,4 +1,4 @@
-# Create GSP React Template
+# Create GSP React CLI
 
 A powerful CLI tool to quickly scaffold modern React applications with an intelligent multi-step template selection system. Choose your language, routing & forms, and styling approach through an interactive menu.
 
@@ -56,9 +56,11 @@ Coming soon: **12 templates** (6 current + 6 React Hook Form variants)
 ### Form Handling Options
 
 **Current (v1.1.0):**
+
 - 📝 **Formik + Yup** - Traditional, battle-tested form handling with schema validation
 
 **Coming (v1.2.0):**
+
 - 🎯 **React Hook Form + Zod** - Modern, performant forms with TypeScript-first validation
 
 ### TypeScript Templates Include
@@ -129,14 +131,16 @@ npx create-gsp-react my-app --template typescript
 ### Current Template IDs
 
 **Available Now (v1.1.0):**
+
 - `javascript` - JS + React Router + Formik+Yup + Vanilla CSS
-- `typescript` - TS + React Router + Formik+Yup + Vanilla CSS  
+- `typescript` - TS + React Router + Formik+Yup + Vanilla CSS
 - `javascript-tailwind` - JS + React Router + Formik+Yup + Tailwind CSS
 - `typescript-tailwind` - TS + React Router + Formik+Yup + Tailwind CSS
 - `javascript-shadcn` - JS + React Router + Formik+Yup + ShadcnUI
 - `typescript-shadcn` - TS + React Router + Formik+Yup + ShadcnUI
 
 **Coming in v1.2.0:**
+
 - `javascript-rhf` - JS + React Router + React Hook Form+Zod + Vanilla CSS
 - `typescript-rhf` - TS + React Router + React Hook Form+Zod + Vanilla CSS
 - `javascript-rhf-tailwind` - JS + React Router + React Hook Form+Zod + Tailwind CSS
